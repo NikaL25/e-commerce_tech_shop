@@ -1,0 +1,31 @@
+section, body,footer, header,.section-pagetop  {
+    background-color: #a2c6da;
+  }
+.section-pagetop   {
+    background-color:#a2c6da;
+  }
+  .logo, tbody {
+    min-width: 150px; 
+    min-height: 85px;
+    border-radius: 10%;
+    background: linear-gradient(45deg, #3498db, #dd6052);
+  }
+  a {
+    font-size: 17px;
+    font-weight: bolder;
+  }
+  .section-content{
+    background-color: #a2c6da;
+  
+  }
+  th{
+   font-size: 15px;
+   font-weight: bolder;
+   color: #000;
+  }
+  .card,tr, th{
+    border: 1px solid rgb(65, 64, 64);
+  }
+  .card-title{
+    background-color: white;
+  }
