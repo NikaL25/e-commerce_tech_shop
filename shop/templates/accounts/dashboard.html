@@ -3,49 +3,47 @@
 {% block content %}
 
 <section class="section-content padding-y bg">
-
-   
-
     <div class="container">
         <div class="row">
             {% include 'includes/dashboard_sidebar.html' %}
-        <main class="col-md-9">
-            <article class="card">
-            <header class="card-header d-flex">
-                <strong class="d-inline-block mr-3">Logged in as:</strong>
-                <h6>{{user.first_name}}</h6>
-            </header>
-            <div class="card-body">
-                <div class="row"> 
-                    
-                   <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Total Orders</h5>
-                            <h4>{{orders_count}}</h4>
-                            <a href="">View orders</a>
-                        </div>
+            <main class="col-md-9">
+                <article class="card">
+                    <header class="card-header d-flex">
+                        <strong class="d-inline-block mr-3">Logged in as:</strong>
+                        <h6>{{ user.first_name }}</h6>
+                    </header>
+                    <div class="card-body">
+                        {% for user in users %}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Total Orders</h5>
+                                            <h4>{{ user.orders_count }}</h4>
+                                            <a href="{% url 'my_orders' %}">View orders</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="card">
+                                        <div class="card-body" style="text-align: center; height: 100px;">
+                                          {% if userprofile.profile_picture %}
+                                            <img src="{{ userprofile.profile_picture.url }}" class="mb-2" alt="User profile" width="50" height="50" style="border-radius: 50%; margin-bottom: -10px;">
+                                          {% else %}
+                                            <p>No profile picture available</p>
+                                          {% endif %}         
+                                            <p class="mb-0">{{ user.email }}</p>
+                                            <p >{{ user.phone_number }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
                     </div>
-                   </div>
-                   <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-body" style="text-align: center;">
-                            <img src="{{userprofile.profile_picture.url}}" alt="User profile" width="50" height="50" style="border-radius: 50%;">
-                            <p class="mb-0">{{user.email}}</p>
-                            <p >{{user.phone_number}}</p>
-
-                        </div>
-                    </div>
-                   </div>
-                </div> <!-- row.// -->
-            </div> <!-- card-body .// -->
-           
-            </article> <!-- order-group.// --> 
-        </main>
-    </div> <!-- row.// -->
+                </article> 
+            </main>
+        </div> 
     </div>
-    
-    
-    </section>
+</section>
 
 {% endblock %}

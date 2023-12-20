@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{%  block content %}
+
+<section class="section-content padding-y bg">
+    <div class="container">
+        <div class="row">
+            <main class="col-md-9">
+                <article class="card">
+                    <header class="card-header">
+                        <h4 class="card-title">Add Product</h4>
+                    </header>
+                    <div class="card-body">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit" class="btn btn-primary">Add Product</button>
+                        </form>
+                    </div>
+                </article>
+            </main>
+        </div>
+    </div>
+</section>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        console.log('Script executed!');
+        function generateSlug(value) {
+            return value.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+        }
+    
+        $('#id_product_name').on('input', function () {
+            var productName = $(this).val();
+    
+            var generatedSlug = generateSlug(productName);
+    
+            $('#id_slug').val(generatedSlug);
+        });
+    });
+    </script>
+
+{% endblock %}
+

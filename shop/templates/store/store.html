@@ -59,7 +59,7 @@
                                 <input type="text" name="min_price" value="{{ min_price }}">
                                 <label for="max_price">Max Price:</label>
                                 <input type="text" name="max_price" value="{{ max_price }}">
-                                <button  type="submit" class="btn btn-block btn-primary">Apply</button>
+                                <button  type="submit" class="btn btn-block btn-primary mt-2 ml-5">Apply</button>
                             </form>
                         </div>
                         </div> 
@@ -82,31 +82,37 @@
         
         <div class="row">
             {% if products %}
-            {% for product in products %}
-            <div class="col-md-4">
-                <figure class="card card-product-grid">
-                    <div class="img-wrap"> 
-                        
-                        <a href="{{product.get_url}}"><img src="{{product.images.url}}"></a>
-                        
-                    </div> <!-- img-wrap.// -->
-                    <figcaption class="info-wrap">
-                        <div class="fix-height">
-                            <a href="{{product.get_url}}" class="title">{{product.product_name}}</a>
-                            <div class="price-wrap mt-2">
-                                <span class="price">{{product.price}}$</span>
-                               
-                            </div> <!-- price-wrap.// -->
-                        </div>
-                        <a href="{{ product.get_url}}" class="btn btn-block btn-primary">View Details</a>
-                    </figcaption>
-                </figure>
-            </div> <!-- col.// -->
-        {% endfor %}
-         {% else %}
-            <div>
-                <h2 >No Result found</h2>
-            </div>
+                {% for product in products %}
+                    <div class="col-md-4">
+                        <figure class="card card-product-grid">
+                            <div class="img-wrap"> 
+                                {% if product.slug %}
+                                    <a href="{{product.get_url}}"><img src="{{product.images.url}}"></a>
+                                {% else %}
+                                    <p>No image available</p>
+                                {% endif %}
+                            </div> <!-- img-wrap.// -->
+                            <figcaption class="info-wrap">
+                                <div class="fix-height">
+                                    <a href="{{product.get_url}}" class="title">{{product.product_name}}</a>
+                                    <div class="price-wrap mt-2">
+                                        <span class="price">{{product.price}} <small>GEL</small></span>
+                                    </div> <!-- price-wrap.// -->
+                                </div>
+                                <a href="{{ product.get_url }}" class="btn btn-block btn-primary">View Details</a>
+        
+                                {% if user.is_authenticated and user.is_superadmin %}
+                                    <!-- Show the "Delete Product" button for superadmin users -->
+                                    <a href="{% url 'delete_product' product.id %}" class="btn btn-block btn-danger">Delete Product</a>
+                                {% endif %}
+                            </figcaption>
+                        </figure>
+                    </div> <!-- col.// -->
+                {% endfor %}
+            {% else %}
+                <div>
+                    <h2>No Result found</h2>
+                </div>
             {% endif %}
         </div> <!-- row end.// -->
         

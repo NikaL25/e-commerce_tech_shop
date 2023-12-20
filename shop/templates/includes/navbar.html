@@ -19,11 +19,10 @@
           
         </ul>
         <ul class="navbar-nav">
-            <li><a href="#" class="nav-link"> <i class="fa fa-envelope"></i> Email </a></li>
-            <li><a href="#" class="nav-link"> <i class="fa fa-phone"></i> Call us </a></li>
-        </ul> <!-- list-inline //  -->
-      </div> <!-- navbar-collapse .// -->
-    </div> <!-- container //  -->
+            <li><a href="https://mail.google.com/mail/u/0/#inbox?compose=DmwnWsdMVpJfvjfzWgNDdfXLWMTVmQwBNMtqCvkmtnqQxRbQFDkQSmpfXlgSdlqWmlzFgVPtNVHl" class="nav-link"> <i class="fa fa-envelope"></i> Email </a></li>
+        </ul> 
+      </div> 
+    </div> 
     </nav>
     
     <section class="header-main border-bottom">
@@ -32,8 +31,8 @@
         <div class="col-lg-2 col-md-3 col-6">
             <a href="{% url 'home' %}" class="brand-wrap">
                 <img class="logo" src="{% static './images/logo1.png' %}" >  
-                <!-- line 75 should be changed to new logo -->
-            </a> <!-- brand-wrap.// -->
+               
+            </a> 
         </div>
         <div class="col-lg col-sm col-md col-6 flex-grow-0">
             <div class="category-wrap dropdown d-inline-block float-right">
@@ -74,7 +73,13 @@
                         </div>
                         {% else %}
                         <div class="widget-header">
-                            <small class="title text-muted">Welcome {{user.first_name}}</small>
+                            <div class="profile d-flex justify-content-between">
+                                <p class="title text-muted mt-3">Welcome</p>
+                                <h5 class="text-success text-capitalize mt-3">{{user.first_name }}</h5>
+                           
+                           
+                                 
+                            </div>  
                             <div> 
                                 <a href="{% url 'dashboard' %}">Dashboard</a> <span class="dark-transp"> | </span>
                                 <a href="{% url 'logout' %}">Logout</a>

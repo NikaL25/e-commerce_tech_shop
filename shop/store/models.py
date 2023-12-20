@@ -21,7 +21,14 @@ class Product(models.Model):
    
 
     def get_url(self):
-        return reverse('product_detail', args=[self.category.slug, self.slug])
+        if self.slug:
+            url = reverse('product_detail', args=[self.category.slug, self.slug])
+            print("URL for {}: {}".format(self.product_name, url))
+            return url
+        else:
+            print("Empty slug for product: {}".format(self.product_name))
+            return ''
+     
 
 
     def __str__(self):
@@ -54,7 +61,6 @@ class Variation(models.Model):
     variation_value=models.CharField(max_length=100)
     is_active=models.BooleanField(default=True)
     created_date=models.DateTimeField(auto_now=True)
-
     objects = VariationManager()
 
     def __str__(self):

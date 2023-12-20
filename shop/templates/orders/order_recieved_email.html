@@ -1,0 +1,8 @@
+{% autoescape off %}
+Hi {{user.first_name}},
+
+ORDER HAS BEEN RECEIVED
+
+Order Number: <a href="http://127.0.0.1:8000//accounts/order_detail/{{order.orders_number}}">{{order.orders_number}}</a>
+
+{% endautoescape %}

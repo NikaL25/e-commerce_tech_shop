@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<section class="section-content padding-y bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Edit Order</h2>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">Update Order</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

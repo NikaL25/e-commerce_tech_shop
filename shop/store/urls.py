@@ -10,4 +10,7 @@ urlpatterns =[
     path('products/', views.product_list, name='product_list'),
     path('filter_by_price/', views.filter_by_price, name='filter_by_price'),
 
+
+   
+
 ]

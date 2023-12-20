@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect, get_object_or_404
+from accounts.models import UserProfile
 from store.models import Product, Variation
 from .models import Cart, CartItem
 from django.core.exceptions import ObjectDoesNotExist
@@ -181,7 +182,10 @@ def cart(request, total=0, quantity=0, cart_items=None):
     except Cart.ObjectDoesNotExist:
         pass
 
+    userprofile=UserProfile.objects.get(user_id=request.user.id)
+    
     context ={
+        'userprofile': userprofile,
         'total':total,
         'quantity': quantity,
         'cart_items': cart_items,

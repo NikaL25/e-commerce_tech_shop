@@ -35,7 +35,7 @@
         <div class="row">
             <div class="item-option-select">
                 <h6>Choose Color</h6>
-                <select name="color" class="form-control" required>
+                <select name="color" class="form-control" >
                   <option value="" disabled_selected>Choose Color</option>
                   {% for i in single_product.variation_set.colors %}    
 
@@ -50,7 +50,7 @@
         <div class="row">
           <div class="item-option-select">
               <h6>Select Memory</h6>
-              <select name="memory" class="form-control" required>
+              <select name="memory" class="form-control" >
                   {% for i in single_product.variation_set.memories %}    
 
                 <option value="{{ i.variation_value| lower }}">{{ i.variation_value |capfirst}}</option>    
@@ -65,7 +65,7 @@
                  
   
                 
-           
+    
         
               
        <!-- row.// -->
@@ -74,9 +74,23 @@
         <h5 class='text-danger'>Out of stock</h5>
         {% else %}
          
+        {% if request.user.is_authenticated %}
         <button type="submit" class="btn btn-primary btn-lg"> <span class="text">Add to cart</span> <i class="fas fa-shopping-cart"></i>  </button>
-         
+        {% else %}
+        <a href="{% url 'register' %}" class="btn btn-primary">Sing in for add to cart</a>
         {% endif %}
+        {% endif %}
+       
+
+
+      
+        {% if request.user.is_authenticated %}
+        {% if request.user.is_superadmin or request.user == single_product.created_by %}
+            <a href="{% url 'edit_product' single_product.id %}" class="btn btn-warning btn-lg">
+                Edit Product
+            </a>
+        {% endif %}
+    {% endif %}
     </article>
   </div>  <!-- product-info-aside .// -->
   </form>
